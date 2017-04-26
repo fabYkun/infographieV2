@@ -1,5 +1,6 @@
 #pragma once
 #include					"ofxGui.h"
+#include					"ofxCubeMap.h"
 #include					"Scene.h"
 
 enum						Shaders
@@ -25,12 +26,12 @@ public:
 private:
 	Shaders					activeShader;
 	ofShader				*shader;
-
 	ofShader				*shaderRaytracing;
 	ofShader				*shaderRaymarching;
-
 	string					shaderVersion;
 	string					currentShaderName() const;
+
+	ofxCubeMap				cubeMap;
 
 	int						glVersionMajor;
 	int						glVersionMinor;
@@ -38,7 +39,6 @@ private:
 	void					SwitchDemo();
 
 	ofParameter<ofVec3f>	colorSphere;
-	ofParameter<ofVec3f>	colorCube;
 
 	ofParameter<float>		radius;
 	ofParameter<float>		size;
@@ -46,13 +46,13 @@ private:
 	ofParameter<float>		reflexion_sphere;
 	ofParameter<float>		reflexion_cube;
 	ofParameter<float>		reflexion_plan;
+	ofParameter<float>		reflexion;
 
 	ofParameter<float>		intLight;
 	ofParameter<ofVec2f>	speLight;
 	ofParameter<ofVec3f>	colLight;
 	ofParameter<float>		ambient;
 	ofParameter<ofVec3f>	posSphere;
-	ofParameter<ofVec3f>	posCube;
 	ofParameter<ofVec3f>	posLight;
 
 	ofParameter<float>		torusRotation;

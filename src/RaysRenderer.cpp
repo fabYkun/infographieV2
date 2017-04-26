@@ -12,6 +12,13 @@ RaysRenderer::~RaysRenderer()
 
 void					RaysRenderer::Setup(int width, int height)
 {
+	cubeMap.loadImages(	"textures/cubemaps/cubemap1.png",
+		"textures/cubemaps/cubemap4.png",
+		"textures/cubemaps/cubemap3.png",
+		"textures/cubemaps/cubemap6.png",
+		"textures/cubemaps/cubemap5.png",
+		"textures/cubemaps/cubemap2.png");
+
 	this->fbo.allocate(width, height);
 	fbo.begin();
 	ofClear(0, 0, 0, 0);
@@ -52,20 +59,13 @@ void					RaysRenderer::Setup(int width, int height)
 	this->guiRaytracer.add(ambient.set("ambient light", .06, .0, 1.));
 	this->guiRaytracer.add(posLight.set("position light", ofVec3f(5., 5., -5.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
 	this->guiRaytracer.add(posSphere.set("position sphere", ofVec3f(.2, -.05, 1.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
-	this->guiRaytracer.add(posCube.set("position cube", ofVec3f(-0.8, 1.6, -1.4), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
 
-	/*
-	**	uniform vec3		sphere_position;
-	**	uniform float		torus_rotation;
-	**
-	**	uniform vec3		light_position;
-	**	uniform vec3		light_color;
-	*/
 	this->guiRaymarching.setup();
 	this->guiRaymarching.add(posLight.set("position light", ofVec3f(5., 5., -5.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
 	this->guiRaymarching.add(colLight.set("color light", ofVec3f(0.2, 0.35, 0.35), ofVec3f(0.), ofVec3f(1.)));
 	this->guiRaymarching.add(torusRotation.set("rotation torus", 1, -2., 2.));
-	this->guiRaytracer.add(posSphere.set("position sphere", ofVec3f(.2, -.05, 1.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
+	this->guiRaymarching.add(posSphere.set("position sphere", ofVec3f(.2, -.05, 1.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
+	this->guiRaymarching.add(reflexion.set("reflexion", 1, .0, 1.));
 }
 
 string					RaysRenderer::currentShaderName() const
@@ -90,13 +90,15 @@ void					RaysRenderer::Update()
 
 void					RaysRenderer::Draw()
 {
+	if (this->activeShader == Shaders::RAYMARCHING)
+		cubeMap.bind();
 	this->shader->begin();
 
 	this->shader->setUniform1f("u_aspect_ratio", this->windowWidth / static_cast<float>(this->windowHeight));
 	this->shader->setUniform3f("sphere_position", posSphere->x, posSphere->y, posSphere->z);
 	this->shader->setUniform3f("light_position", posLight->x, posLight->y, posLight->z);
 	this->shader->setUniform3f("light_color", colLight->x, colLight->y, colLight->z);
-	this->shader->setUniform3f("O", 0., 0., -1.);
+	this->shader->setUniform3f("O", 0., 0., -2.);
 
 	if (this->activeShader == Shaders::RAYTRACING)
 	{
@@ -104,10 +106,8 @@ void					RaysRenderer::Draw()
 		this->shader->setUniform1f("sphere_reflexion", reflexion_sphere);
 		this->shader->setUniform3f("sphere_color", colorSphere->x, colorSphere->y, colorSphere->z);
 
-		this->shader->setUniform3f("cube_position", posCube->x, posCube->y, posCube->z);
+		this->shader->setUniform3f("cube_position", ofVec3f(-0.8, 1.6, -1.4));
 		this->shader->setUniform1f("cube_size", size);
-		this->shader->setUniform1f("cube_reflexion", reflexion_cube);
-		this->shader->setUniform3f("cube_color", colorCube->x, colorCube->y, colorCube->z);
 
 		this->shader->setUniform3f("plane_position", 0., -.5, 0.);
 		this->shader->setUniform3f("plane_normal", 0., 1., 0.043);
@@ -124,8 +124,12 @@ void					RaysRenderer::Draw()
 	else
 	{
 		this->shader->setUniform1f("torus_rotation", torusRotation);
+		this->shader->setUniform1i("envMap", 0);
+		this->shader->setUniform1f("time", ofGetElapsedTimeMillis() / 3000.0);
+		this->shader->setUniform1f("reflexion", CLAMP((reflexion * -1.0) + 1, 0, 1));
 		fbo.draw(-100, -100);
 		this->shader->end();
+		cubeMap.unbind();
 		this->guiRaymarching.draw();
 	}
 }
