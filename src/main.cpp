@@ -1,12 +1,19 @@
-#include "ofMain.h"
-#include "ofApp.h"
+#include		"ofMain.h"
+#include		"ofApp.h"
 
-//========================================================================
-int main( ){
-	ofSetupOpenGL(1024,768,OF_WINDOW);			// <-------- setup the GL context
+int				main()
+{
+	ofGLWindowSettings windowSettings;
 
-	// this kicks off the running of my app
-	// can be OF_WINDOW or OF_FULLSCREEN
-	// pass in width and height too:
+	windowSettings.width = 1024;
+	windowSettings.height = 768;
+
+	// uncomment to use 120GLSL shader version
+	//windowSettings.setGLVersion(2, 1);
+
+	// uncomment to use 330GLSL shader version
+	windowSettings.setGLVersion(3, 3);
+
+	ofCreateWindow(windowSettings);
 	ofRunApp(new ofApp());
 }

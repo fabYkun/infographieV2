@@ -31,6 +31,12 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\RaysRenderer.cpp">
+      <Filter>src\Rays</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -48,11 +54,29 @@
     <Filter Include="src\Shaders">
       <UniqueIdentifier>{ae62d6bd-0f8b-47f6-abee-502b4b6e40d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Shaders\Raytracing">
+    <Filter Include="src\Shaders\v120">
+      <UniqueIdentifier>{e9d4354f-e724-4d31-8431-49295159f7db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Shaders\v330">
+      <UniqueIdentifier>{a5302837-bce1-4fd6-9fc4-3f63e9aa5fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Shaders\v120\Raymarching">
+      <UniqueIdentifier>{55838250-c76f-466b-8bdd-43106c7baa31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Shaders\v120\Raytracing">
       <UniqueIdentifier>{a1204105-02ea-4969-9719-760c6d6779a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Shaders\Raymarching">
-      <UniqueIdentifier>{55838250-c76f-466b-8bdd-43106c7baa31}</UniqueIdentifier>
+    <Filter Include="src\Shaders\v330\Raymarching">
+      <UniqueIdentifier>{5a2ad33b-fab1-45cd-a5ae-baf28bee9baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Shaders\v330\Raytracing">
+      <UniqueIdentifier>{97fc2ab2-9325-4488-ad9f-240e28d8ae4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rays">
+      <UniqueIdentifier>{0e6c36d8-6b89-40bb-a34f-c125f814c368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Common">
+      <UniqueIdentifier>{38e98bd5-bee7-49ff-b94f-51bf91be39e4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,22 +110,40 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
+    <ClInclude Include="src\RaysRenderer.h">
+      <Filter>src\Rays</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="bin\data\raymarching\frag.hlsl">
-      <Filter>src\Shaders\Raymarching</Filter>
+    <FxCompile Include="bin\data\shaders\v120\raymarching\frag.hlsl">
+      <Filter>src\Shaders\v120\Raymarching</Filter>
     </FxCompile>
-    <FxCompile Include="bin\data\raymarching\vertex.hlsl">
-      <Filter>src\Shaders\Raymarching</Filter>
+    <FxCompile Include="bin\data\shaders\v120\raymarching\vertex.hlsl">
+      <Filter>src\Shaders\v120\Raymarching</Filter>
     </FxCompile>
-    <FxCompile Include="bin\data\raytracing\frag.hlsl">
-      <Filter>src\Shaders\Raytracing</Filter>
+    <FxCompile Include="bin\data\shaders\v120\raytracing\frag.hlsl">
+      <Filter>src\Shaders\v120\Raytracing</Filter>
     </FxCompile>
-    <FxCompile Include="bin\data\raytracing\vertex.hlsl">
-      <Filter>src\Shaders\Raytracing</Filter>
+    <FxCompile Include="bin\data\shaders\v120\raytracing\vertex.hlsl">
+      <Filter>src\Shaders\v120\Raytracing</Filter>
+    </FxCompile>
+    <FxCompile Include="bin\data\shaders\v330\raymarching\frag.hlsl">
+      <Filter>src\Shaders\v330\Raymarching</Filter>
+    </FxCompile>
+    <FxCompile Include="bin\data\shaders\v330\raymarching\vertex.hlsl">
+      <Filter>src\Shaders\v330\Raymarching</Filter>
+    </FxCompile>
+    <FxCompile Include="bin\data\shaders\v330\raytracing\frag.hlsl">
+      <Filter>src\Shaders\v330\Raytracing</Filter>
+    </FxCompile>
+    <FxCompile Include="bin\data\shaders\v330\raytracing\vertex.hlsl">
+      <Filter>src\Shaders\v330\Raytracing</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

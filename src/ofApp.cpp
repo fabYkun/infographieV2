@@ -2,8 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	this->raysRenderer.Setup(ofGetScreenWidth(), ofGetScreenHeight());
+	/*
+	
 	ofSetFrameRate(150);
-	trace.load("raytracing/vertex.hlsl", "raymarching/frag.hlsl");
+	trace.load("shaders/v330/raytracing/vertex.hlsl", "shaders/v330/raymarching/frag.hlsl");
 	
 	w = ofGetScreenWidth();
 	h = ofGetScreenHeight();
@@ -29,15 +32,20 @@ void ofApp::setup(){
 	gui.add(posLight.set("position light", ofVec3f(5., 5., -5.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
 	gui.add(posSphere.set("position sphere", ofVec3f(.2, -.05, 1.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
 	gui.add(posCube.set("position cube", ofVec3f(-0.8, 1.6, -1.4), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
+	*/
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	ofSetWindowTitle(ofToString(ofGetFrameRate()));
+	//ofSetWindowTitle(ofToString(ofGetFrameRate()));
+	this->raysRenderer.Update();
+	this->raysRenderer.setLastKey(0);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	this->raysRenderer.Draw();
+	/*
 	ofBackgroundGradient(255, 0);
 
 	trace.begin();
@@ -62,23 +70,23 @@ void ofApp::draw(){
 	trace.setUniform3f("light_position", posLight->x, posLight->y, posLight->z);
 	trace.setUniform3f("light_color", colLight->x, colLight->y, colLight->z);
 	trace.setUniform1f("ambient", ambient);
-	trace.setUniform1f("rotation", 1);
+	trace.setUniform1f("torus_rotation", 1);
 	trace.setUniform3f("O", 0., 0., -1.);
 
 	fbo.draw(-100, -100);
 
 	trace.end();
 	gui.draw();
+	*/
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
-}
+void ofApp::keyPressed(int key)
+{}
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	this->raysRenderer.setLastKey(key);
 }
 
 //--------------------------------------------------------------
@@ -113,8 +121,7 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-	this->w = w;
-	this->h = h;
+	this->raysRenderer.WindowSizeChanged(w, h);
 }
 
 //--------------------------------------------------------------
