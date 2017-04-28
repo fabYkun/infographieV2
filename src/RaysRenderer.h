@@ -18,7 +18,6 @@ public:
 	void					Setup(int width, int height);
 	void					Draw();
 	void					Update();
-	void					Quit();
 
 	ofxPanel				guiRaytracer;
 	ofxPanel				guiRaymarching;

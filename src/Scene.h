@@ -13,12 +13,15 @@ public:
 	virtual void			Setup(int width, int height) = 0;
 	virtual void			Draw() = 0;
 	virtual void			Update() = 0;
-	virtual void			Quit() = 0;
+	virtual void			Quit();
 	
 	bool					isKeyToLaunch(int) const;
-	void					setLastKey(int);
+	virtual void			setLastKey(int);
+	std::pair<char, char>	getKeysToLaunch() const;
 	
-	virtual void			WindowSizeChanged(int, int);  // < -- change window size must be implemented
+	virtual void			WindowSizeChanged(int, int);
+	bool					hasQuit = false;
+	bool					hasBeenStarted = false;
 
 protected:
 	ofFbo					fbo;

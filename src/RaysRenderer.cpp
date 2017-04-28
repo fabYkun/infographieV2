@@ -8,10 +8,21 @@ RaysRenderer::RaysRenderer()
 }
 
 RaysRenderer::~RaysRenderer()
-{}
+{
+	if (!this->hasBeenStarted) return;
+	delete this->shaderRaymarching;
+	delete this->shaderRaytracing;
+}
 
 void					RaysRenderer::Setup(int width, int height)
 {
+	if (this->hasBeenStarted)
+	{
+		fbo.begin();
+		ofClear(0, 0, 0, 0);
+		fbo.end();
+		return;
+	}
 	cubeMap.loadImages(	"textures/cubemaps/cubemap1.png",
 		"textures/cubemaps/cubemap4.png",
 		"textures/cubemaps/cubemap3.png",
@@ -66,6 +77,7 @@ void					RaysRenderer::Setup(int width, int height)
 	this->guiRaymarching.add(torusRotation.set("rotation torus", 1, -2., 2.));
 	this->guiRaymarching.add(posSphere.set("position sphere", ofVec3f(.2, -.05, 1.), ofVec3f(-5., -5., -5.), ofVec3f(5., 5., 5.)));
 	this->guiRaymarching.add(reflexion.set("reflexion", 1, .0, 1.));
+	this->hasBeenStarted = true;
 }
 
 string					RaysRenderer::currentShaderName() const
@@ -132,12 +144,4 @@ void					RaysRenderer::Draw()
 		cubeMap.unbind();
 		this->guiRaymarching.draw();
 	}
-}
-
-void					RaysRenderer::Quit()
-{
-	/*
-	delete this->shaderRaymarching;
-	delete this->shaderRaytracing;
-	*/
 }

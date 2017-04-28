@@ -2,7 +2,7 @@
 
 #include						"ofMain.h"
 #include						"ofxGui.h"
-#include						"RaysRenderer.h"
+#include						"Hub.h"
 
 class ofApp :					public ofBaseApp
 {
@@ -23,31 +23,5 @@ class ofApp :					public ofBaseApp
 		void					dragEvent(ofDragInfo dragInfo);
 		void					gotMessage(ofMessage msg);
 
-		RaysRenderer			raysRenderer;
-
-		/*
-		ofxPanel				gui;
-		ofParameter<ofVec3f>	colorSphere;
-		ofParameter<ofVec3f>	colorCube;
-
-		ofParameter<float>		radius;
-		ofParameter<float>		size;
-
-		ofParameter<float>		reflexion_sphere;
-		ofParameter<float>		reflexion_cube;
-		ofParameter<float>		reflexion_plan;
-
-		ofParameter<float>		intLight;
-		ofParameter<ofVec2f>	speLight;
-		ofParameter<ofVec3f>	colLight;
-		ofParameter<float>		ambient;
-		ofParameter<ofVec3f>	posSphere;
-		ofParameter<ofVec3f>	posCube;
-		ofParameter<ofVec3f>	posLight;
-
-		ofFbo fbo;
-		int w, h;
-		ofShader trace;
-		*/
-		
+		Hub						hub;
 };

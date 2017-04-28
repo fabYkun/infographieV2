@@ -3,20 +3,20 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-	this->raysRenderer.Setup(ofGetScreenWidth(), ofGetScreenHeight());
+	this->hub.Setup(ofGetScreenWidth(), ofGetScreenHeight());
 }
 
 //--------------------------------------------------------------
 void ofApp::update()
 {
-	this->raysRenderer.Update();
-	this->raysRenderer.setLastKey(0);
+	this->hub.Update();
+	this->hub.setLastKey(0);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	this->raysRenderer.Draw();
+	this->hub.Draw();
 }
 
 //--------------------------------------------------------------
@@ -25,7 +25,7 @@ void ofApp::keyPressed(int key)
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	this->raysRenderer.setLastKey(key);
+	this->hub.setLastKey(key);
 }
 
 //--------------------------------------------------------------
@@ -61,7 +61,7 @@ void ofApp::mouseExited(int x, int y){
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h)
 {
-	this->raysRenderer.WindowSizeChanged(w, h);
+	this->hub.WindowSizeChanged(w, h);
 }
 
 //--------------------------------------------------------------
