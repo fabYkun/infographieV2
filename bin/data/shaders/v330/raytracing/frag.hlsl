@@ -190,7 +190,7 @@ vec3				run(float x, float y)
 		}
 		toL = normalize(light_position - intersection_pt);
 
-		if (darkPoint(intersection_pt, toL))
+		if (min(min(t0, t1), t2) == INFINITY || darkPoint(intersection_pt, toL))
 		{
 			col_ray = vec3(0, 0, 0);
 			depth = 5;
