@@ -5,12 +5,12 @@ A small student project that introduced me to shader programming, illumination a
 ## Raymarching
 
 First time I ever did a raymarcher, I expected the process to be kinda obscure but in reality it was very straight-forward and intuitive. My initial goal was just to render a sphere and shade it but I later added some reflexion and a cubemap to make it more interesting. Since every object is treated only by its mathematical equation and that the shading/reflexion applies to voxels and not shapes (as opposed to raytracing), adding a torus was trivial. Using a fragment shader (openGL 2.1 <=> 3.3).  
-![raymarching](https://user-images.githubusercontent.com/2204781/28316419-1ac2c52c-6bc3-11e7-8dbd-03a3855233d3.png)
+![raymarching](https://user-images.githubusercontent.com/2204781/29454172-76ffb9a6-840c-11e7-8c95-a07a256a1fd7.png)
 
 ## Raytracing
 
 I already did a raytracer two years ago with reflexions and many shapes (see https://twitter.com/fabYkun/status/475767211672764416). To shake things up I wanted to compute everything inside a fragment shader... So no iterations and no real storage/data structures (or at least I'm not informed they exist). As expected it was a mess I will never do it like that again x)... But a least it works ! Using a fragment shader (openGL 2.1 <=> 3.3). 
-![raytracing](https://user-images.githubusercontent.com/2204781/28316428-28f636ec-6bc3-11e7-9ff9-6cb4e668020e.png)
+![raytracing](https://user-images.githubusercontent.com/2204781/29454173-77019276-840c-11e7-8ffe-bf6d6222740f.png)
 
 ## Illumination
 
